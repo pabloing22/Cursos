@@ -1,19 +1,27 @@
 console.log("hola mundo");
-var a=prompt("ingresá el valor de A"); console.log (a);
-var b=prompt("Ingresá el valor de B"); console.log(b);
-var c=prompt("Ingresá el valor de C"); console.log(c);
+var f=prompt("ingresá la función"); console.log (f);
+// var b=prompt("Ingresá el valor de B"); console.log(b);
+// var c=prompt("Ingresá el valor de C"); console.log(c);
 
-document.write("<br>");
+for (i=0; i < f.length; i++){
 
-function signo (x){
-
-  if (x>0){
-    return "+";
-  }
-  //else{
-  //  return "-"
-  //}
+  console.log(f[i]);
 
 }
 
-document.write ("Tu función es: Y=",a,"x^2",signo(b),b,"x",signo(c),c);
+document.write("<br>");
+
+document.write("Tu función es Y=",f);
+
+// function signo (x){
+//
+//   if (x>0){
+//     return "+";
+//   }
+//   else{
+//     return
+//   }
+//
+// }
+//
+// document.write ("Tu función es: Y=",a,"x^2",signo(b),b,"x",signo(c),c);

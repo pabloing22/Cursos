@@ -5,8 +5,8 @@ function sumar(a,b){
 
   var c=a+b;
 
-  //return c;
+  return c;
 
-  console.log(c);
+  //console.log(c);
 
 }
