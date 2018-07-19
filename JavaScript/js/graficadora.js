@@ -1,27 +1,18 @@
-console.log("hola mundo");
-var f=prompt("ingresá la función"); console.log (f);
-// var b=prompt("Ingresá el valor de B"); console.log(b);
-// var c=prompt("Ingresá el valor de C"); console.log(c);
 
-for (i=0; i < f.length; i++){
+//var f=prompt("ingresá la función");
+var f,x,a,b;
 
-  console.log(f[i]);
+function obtener (){
+
+f=document.getElementById("funcion").value;
+
+console.log("longitud de la cadena: ",f.length);
+
+x=f.indexOf('x'); console.log('Posicion de variable x: ',x);
+
+a=f.substr(0,x); console.log('El valor de a sera: ',a);
+
+b=f.substring(x+1); console.log ('El valor de b sera: ',b);
+
 
 }
-
-document.write("<br>");
-
-document.write("Tu función es Y=",f);
-
-// function signo (x){
-//
-//   if (x>0){
-//     return "+";
-//   }
-//   else{
-//     return
-//   }
-//
-// }
-//
-// document.write ("Tu función es: Y=",a,"x^2",signo(b),b,"x",signo(c),c);
