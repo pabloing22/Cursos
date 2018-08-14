@@ -4,19 +4,99 @@
   <head>
     <meta charset="utf-8">
     <title>Graficadora de funciones</title>
+
+    <link rel="stylesheet" href="css/graph.css">
+
   </head>
   <body>
 
     <h1>GRAFICADORA</h1>
 
-
-
     <form>
       <input type="text" name="" value="" id="funcion">
       <input type="button" name="" value="Graficar" onclick="obtener();">
-      <p>Tu función es: f</p>
+
+      <div id="nodo"></div>
+
     </form>
 
-    <script src="js/graficadora.js"></script>
+    <div id="contenedor">
+
+      <canvas id="canvas" width="800px" height="400px"></canvas>
+
+    </div>
+
+    <script>
+
+
+      var f,x,a,b,nodo;
+
+      function obtener (){
+
+      f=document.getElementById("funcion").value;
+
+      console.log("longitud de la cadena: ",f.length);
+
+      x=f.indexOf('x'); console.log('Posicion de variable x: ',x);
+
+      a=f.substr(0,x); console.log('El valor de a sera: ',a);
+
+      b=f.substring(x+1); console.log ('El valor de b sera: ',b);
+
+      //creamos el nodo
+      nodo=document.createElement("p");
+
+      //Creamos el contenido del nodo
+
+      funcion=document.createTextNode("tu función es: "+f);
+
+      //añadimos el contenido al nodo
+      nodo.appendChild(funcion);
+
+      //Agregamos
+      document.getElementById("nodo").appendChild(nodo);
+
+      }
+
+      //Definimos el CANVAS para los ejes cartesianos
+
+        var canvas=document.getElementById("canvas");
+        var ctx=canvas.getContext("2d");
+
+
+
+        //Abscisa
+        ctx.moveTo(400,0);
+        ctx.lineTo(400,400);
+        //Ordenada
+        ctx.moveTo(0,200);
+        ctx.lineTo(800,200);
+        //dibujar
+        ctx.lineWidth=3;
+        ctx.stroke();
+
+
+        ctx.lineWidth=0.05;
+        for (i=0; i<=800; i=i+20){
+          ctx.moveTo(i,0);
+          ctx.lineTo(i,400);
+          ctx.stroke();
+        }
+
+        ctx.lineWidth=0.05;
+        for (i=0; i<=400; i=i+20){
+          ctx.moveTo(0,i);
+          ctx.lineTo(800,i);
+          ctx.stroke();
+        }
+
+
+
+      //-----------------------------------------------
+
+    </script>
+
+    <!--<script type="text/javascript" src="js/dibujo.js"></script>-->
+
   </body>
 </html>
