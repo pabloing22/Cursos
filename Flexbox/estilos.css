@@ -1,0 +1,95 @@
+div{
+    border: 2px solid blue;
+    width: 100%;
+    height: 500px;
+    margin:auto;
+    
+}
+
+article{
+    background-color: crimson;
+    width: 150px;
+    height: 100px;
+    text-align: center;
+    margin: 10px;
+    font-size: 50px;
+    color: white;
+    line-height: 100px;
+}
+
+.contenedor{
+    display: flex; 
+    flex-direction: ROW;
+    background-color: black;
+   
+    /*PROPIEDADES DEL CONTENEDOR:*/
+    /*flex-direction: row; por defecto*/
+    /*flex-direction: row-reverse; invierte los items*/
+    /*flex-direction: column; ordena los ITEMS en columnas */
+    /*flex-direction: column-reverse; columna al revés */
+    
+    /*flex-wrap: wrap; alinea los elementos verticalmente si estos sobrepasan al ancho del contenedor */
+    /*flex-wrap: wrap-reverse; alinea horizontalmente en la parte inferior del contenedor y los acumula verticalmente pero en reversa*/
+
+    /* JUSTIFY CONTENT es para ubicar elementos de manera horizontal*/
+    /*justify-content: flex-start; por defecto */
+    /*justify-content: flex-end; ubica los items a la derecha del contenedor */
+    /*justify-content: center; centraliza los items en el centro del eje horizontal o vertical segun corresponda*/
+    /*justify-content: space-around; los elementos se dstribuyen simetricamente utilizando todo el widht segun corresponda */
+    /*justify-content: space-between; /*idem space-around pero solo distribuye los margenes de los elementos simétricamente entre ellos excepto el margen del primer elemento y el ultimo.*/
+
+    /* ALIGN-ITEM ubicar elmenetos de manera vertical*/
+ 
+    /*align-items: flex-start; por defecto */
+    /*align-items: flex-end; los ubica al final del eje vertical */
+    /*align-items: center; alinea la fila en el centro del eje vertical */
+    /*align-items: baseline; alinea según la linea base del texto como referencia*/
+   /* align-items: stretch; hace que los items ocupen todo el alto del contenedor */
+
+   /*ALIGN CONTENT alinea los elementos verticalmente PERO cuando tenemos flex-wrap*/
+   /*align-content: center; flex-wrap: wrap; IDEM aling-item:center */
+  
+   /* FLEX FLOW forma abreviada de FLEX-DIRECTION y FLEX WRAP
+   flex-flow: column nowrap; = flex-direction: column; flex-wrap:no wrap;*/
+
+}
+
+
+/*PROPIEDADES DE LOS ITEMS:
+-order: valor; se eplica a un ITEM y los ordena según la prioridad
+-flex-grow: nos permite hacer crecer los elementos.
+-flex-shrink: nos permite reducir los elementos. Inverso de flex-grow.
+-flex-basis: le damos un tamaño en pixeles, si el flex-direction está en row
+la propiedad basis asigna l tamaño en widht, si está en column, asigna el tamaño en heigth.
+-align-self: alinea cada elemento por separado.
+-flex: mezcla de las propiedades flex-grow, flex-shrink, flex-basis en ese orden
+por ejemplo flex: 1 2 50px;
+*/
+
+
+
+.item {
+}
+
+.uno{
+    /* align-self: flex-end */
+    /*flex-basis: 50px;*/
+    /*order: 3;*/
+    /*flex-grow: 1; el item uno ocupará todo el espacio disponible
+    si quisieramos que los 3 ocupen por igual el espacio utilizamos la misma propiedad*/ 
+}
+
+.dos{
+    /*align-self: flex-end;*/
+    /*order: 1;*/
+}
+
+.tres{
+   /* order: 2;*/
+}
+
+h1{
+    color:white;
+}
+
+
