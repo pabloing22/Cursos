@@ -1,0 +1,67 @@
+body{
+    font-family: sans-serif;
+    margin:0;
+    padding:0;
+    padding-bottom: 200em;
+}
+
+section{
+    border: 2px dashed steelblue;
+    width: 500px;
+    min-height: 400px;
+    margin: 5em auto;
+    padding: 2em;
+}
+
+div{
+    background: rgba(173,216,230,.7);
+    border-radius: 5px;
+    color:#444;
+    font-size: 2.8em;
+    font-weight: bold;
+    line-height: 1.5;
+    padding: .5em;
+    text-align: center;
+    position: relative;
+    width: 100px; height: 100px;
+}
+/* Permite definir la posición en el eje Z de elementos
+solamente POSICIONADOS. 
+si no hay Z index, el navegador les asignas según el 
+orden en que se definieron*/
+.uno{
+    background: palegreen;
+    top:50px;
+    left:50px;
+    /* z-index:3; */
+    /* z-index:30; */
+}
+.uno:before{
+    background-color: tomato;
+    width: 50px; height: 50px;
+    display: block;
+    content: '';
+    position: absolute;
+    top:-20px;
+    left: -20px;
+    z-index:-1;
+}
+.uno:after{
+    background-color: tomato;
+    width: 50px; height: 50px;
+    display: block;
+    content: '';
+    position: absolute;
+}
+
+.dos{
+    background: tomato;
+    top:10px;
+    left: 100px;
+    z-index:10;
+}
+.tres{
+    background: lightblue;
+    left:150px;
+    top:-50px;
+}

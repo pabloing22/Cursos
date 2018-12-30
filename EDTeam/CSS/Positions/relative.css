@@ -1,0 +1,55 @@
+body{
+    font-family: sans-serif;
+    margin:0;
+    padding:0;
+    padding-bottom: 200em;
+}
+
+section{
+    border: 2px dashed steelblue;
+    width: 500px;
+    height: 400px;
+    margin: 5em auto;
+}
+
+div{
+    background: rgba(173,216,230,.7);
+    border-radius: 5px;
+    color:#444;
+    font-size: 2.8em;
+    font-weight: bold;
+    line-height: 1.5;
+    padding: .5em;
+    text-align: center;
+}
+
+/* CSS POSITIONS
+static
+relative
+absolute
+fixed
+
+propiedades
+top
+right
+bottom
+left
+z-index es la posicion en el eje Z */
+
+.uno{
+    /* La posición relativa conserva su espacio y su ubicación
+    inicial como sistema de referencia
+    respecto a las coordenadas y nos sirve
+    para poder posicionar el objeto nada más con sus propiedades
+    top, right, z-index, etc. */
+    position: relative;
+    /* top:10px; empuja desde arriba hacia abaji 10px */
+    /* bottom:20px; empuja desde abajo 20 píxeles */
+    /* left:30px; empuja desde la izquiera hacia la derecha 30px */
+    /* right: 30px; epuja desde la derecha hacia la izquierda 30px */
+    /* top:50%; No sirve si el padre (section) no tiene un 
+    algo FIJO DECLARADO */
+    top:50%;
+    /* right: 25%; No sucede lo mismo que con TOP y BOTTOM, esta propiedad
+    no exige que exista un width FIJO DECLARADO */
+}

@@ -1,0 +1,46 @@
+body{
+    font-family: sans-serif;
+    margin:0;
+    padding:0;
+    padding-bottom: 200em;
+}
+
+section{
+    border: 2px dashed steelblue;
+    /* width: 500px;
+    height: 400px;  quitamos estas propiedades para que el seccion de ajuste
+    al contenido*/
+    margin: 5em auto;
+    padding: 2em;
+    /* display: inline-block; */
+    /* display: table; */
+    width: 500px;
+    height: 400px;
+    /* position: fixed; */
+    position: relative;
+}
+
+div{
+    background: rgba(173,216,230,.7);
+    border-radius: 5px;
+    color:#444;
+    font-size: 2.8em;
+    font-weight: bold;
+    line-height: 1.5;
+    padding: .5em;
+    text-align: center;
+}
+
+
+/* La posición absoluta rompe con el flujo del documento
+y no conserva su espacio
+1era lección: su espacio en el flujo desaparece, se convierte en 0 */
+.uno{
+    position: absolute;
+    /* El origen del eje de coordenadas se define por el origen del
+    padre, si el padre no está posicionado, busca al abuelo,
+    si el abuelo no está posicionado busca al bisabuelo, y así.
+    Sin ninguno está posicionado se calcula respecto al body. */
+    top:0;
+    left:0;
+}
