@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Eventos</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    
+</head>
+<body>
+    <main>
+
+        <input v-model="nuevaTarea" type="text" @keyup.enter="cargarTareaVUE">
+        <button onclick="cargarTareaJS();">CARGAR con JS</button>
+        <button @click="cargarTareaVUE();">CARGAR con VUE</button>
+        
+        <ul>
+            <li v-for='tarea in tareas'>{{tarea}}</li>
+        </ul>
+
+        <pre>{{$data}}</pre>
+
+    </main>
+
+    <script src="https://unpkg.com/vue@2.5.17/dist/vue.js"></script>
+    <script>
+        const v = new Vue ({
+            el:'main',
+            data:{
+                nuevaTarea:'',
+                tareas: [
+                    'tarea 1',
+                    'tarea 2',
+                    '...',
+                    'tarea n'
+                ],
+            },
+            methods:{
+                cargarTareaVUE(){
+                    console.log('VueJS');
+                    this.tareas.push(this.nuevaTarea);
+                    this.nuevaTarea='';
+                }
+            }
+        });
+
+
+        function cargarTareaJS(){
+            console.log('ok');
+            const input = document.querySelector('input[type=text]');
+            v.tareas.push(input.value);
+            input.value='';
+        }
+
+
+    </script>
+
+</body>
+</html>

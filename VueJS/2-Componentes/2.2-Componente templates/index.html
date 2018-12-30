@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="main.js"></script>
+</head>
+<body>
+    <main>
+        <elegir-ganador :listado="personas"></elegir-ganador>
+    </main>
+
+    <template id="templateDom">
+        <div>
+            <h1> Concursantes </h1>
+            <ul><li v-for="persona in listado" >{{persona}}</li></ul>
+            <button @click="elegirGanador()">Elegir Ganador</button>
+            <h1 v-if="ganador">El ganador es: {{ganador}}</h1>
+        </div>
+    </template>
+    
+    <script src="https://unpkg.com/vue@2.5.17/dist/vue.js"></script>
+    <script>
+        Vue.component('elegir-ganador',{
+            props:['listado'],
+            template:`#templateDom`,
+            data(){
+                return{
+                    ganador:false,
+                    participantes:this.listado,
+                }
+            },
+            methods:{
+                elegirGanador(){
+                    let cantidad =this.participantes.length;
+                    let indice = Math.floor( ( Math.random() * cantidad ) );
+                    this.ganador = this.participantes[indice -1];
+                }
+            }
+        });
+        new Vue({
+            el:'main',
+            data:{
+                personas:['Juan', 'Alicia', 'Pedro', 'Javier', 'Marcos'],
+            }
+        });
+    
+    </script>
+</body>
+</html>

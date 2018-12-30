@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+</head>
+<body>
+    <main>
+        <!-- Renderizado condicional con vshow (display:none)-->
+        <h1 v-show="show==true">V-SHOW Display:none</h1> 
+
+        <!-- Renderizado condicional con vif (elimina elemento del DOM) -->
+        <h1 v-if="vif==true">V-IF Elimina elemento del DOM</h1>
+        
+        <!-- Rend. condicional múltiple V-IF/V-ELSEIF/V-ELSE -->
+        <div v-if="div==true">
+            <h2 v-if="edad < 18">Eres menor de edad. Tienes: {{edad}} </h2>
+            <h2 v-else-if="edad < 80">Eres mayor de edad. Tienes: {{edad}}</h2>
+            <h2 v-else>Eres viejo. Tienes: {{edad}}</h2>
+        </div>
+
+        <!-- Template = conjunto de elementos -->
+
+        <template v-if="template">
+            <h2>Elemento 1</h2>
+            <h2>...</h2>
+            <h2>Elemento n</h2>
+        </template>
+
+        <pre>{{$data}}</pre>
+
+    </main>
+    <script src="https://unpkg.com/vue@2.5.17/dist/vue.js"></script>
+    <script>
+        const v=new Vue({
+            el: 'main',
+            data:{
+                show:false,
+                vif:false,
+                edad:15,
+                div:false,
+                template:true,
+            }
+        });
+    </script>
+</body>
+</html>

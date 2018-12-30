@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Filtros</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+
+</head>
+<body>
+
+
+    <main>
+        <ul>
+            <li v-for="juego in mejoresJuegos">
+               {{juego.titulo}}
+            </li>
+        </ul>
+        <pre>{{$data}}</pre>
+    </main>
+
+
+    <script src="https://unpkg.com/vue@2.5.17/dist/vue.js"></script>
+    <script>
+        const v = new Vue ({
+            el:'main',
+            data:{
+                minimo:3,
+                juegos:[
+                    {
+                        titulo: 'juego 1',
+                        genero: 'genero 1',
+                        puntuacion: '9'
+                    },
+                    {
+                        titulo: 'juego 2',
+                        genero: 'genero 2',
+                        puntuacion: '4'
+                    },                    
+                    {
+                        titulo: 'juego 3',
+                        genero: 'genero 3',
+                        puntuacion: '1'
+                    },                    
+                    {
+                        titulo: 'juego 4',
+                        genero: 'genero 4',
+                        puntuacion: '3'
+                    },
+                    
+                ],
+            },
+            methods:{},
+            computed:{
+                mejoresJuegos(){
+
+                    var self = this;
+
+                    return this.juegos.filter(
+                        function(juego){return juego.puntuacion > self.minimo}
+                    );
+
+            
+                }
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Data Binding en atributos y clases</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="main.js"></script>
+</head>
+<body>
+    <style>
+        li{
+            cursor: pointer;
+            margin:10px;
+            
+        }
+
+        .noCompletado{
+            color:red;
+        }
+
+        .completado{
+            text-decoration: line-through;
+            color: black;
+        }
+
+
+    </style>
+    <main>
+
+        <h1>Tareas completadas: {{tareasCompletadas.length}} </h1>
+        
+
+        <ul>
+            <!-- podemos usar v-bind:class ó solamente :class -->
+            <li 
+                
+                :class="{completado:tarea.estado}"
+                class="noCompletado"
+                @click="setEstado(index)"
+                v-for="(tarea,index) in tareas">
+
+                {{tarea.title}}
+                
+            </li>
+        </ul>
+
+        <pre>{{$data}}</pre>
+
+    </main>
+    <script src="https://unpkg.com/vue@2.5.17/dist/vue.js"></script>
+    <script>
+    new Vue({
+        el:'main',
+        data:{
+            tareas:[
+                {title:'tarea 1', estado: false},
+                {title:'tarea 2', estado: false},
+                {title:'tarea 3', estado: false}
+            ],
+        },
+        methods:{
+            setEstado(item){
+                this.tareas[item].estado=!this.tareas[item].estado;
+            },
+        },
+        computed:{
+            tareasCompletadas(){
+                return this.tareas.filter(
+                    (tarea)=>tarea.estado
+                );
+            }
+        }
+    });
+    </script>
+</body>
+</html>

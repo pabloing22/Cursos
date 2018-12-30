@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Ajax con AXIOS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+   
+
+</head>
+<body>
+    <main>
+        <img v-for="person in people" 
+        v-bind:src="person.picture.large" 
+        alt="">
+        <pre>{{$data}}</pre>
+    </main>
+    
+    <script src="https://unpkg.com/vue@2.5.17/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+        new Vue({
+            el:'main',
+            mounted(){
+                this.getPeople();
+            },
+            data:{
+                people:[],
+            },
+            methods:{
+                getPeople(){
+                    axios.get('https://randomuser.me/api/?results=25')
+                        .then((respuesta)=> {
+                            // handle success
+                            console.log(respuesta);
+                            this.people=respuesta.data.results;
+                        });
+
+                },
+            },
+        });
+    </script>
+</body>
+</html>

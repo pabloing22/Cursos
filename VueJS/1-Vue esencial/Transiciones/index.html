@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <style>
+        button {
+            display: block;
+        }
+
+        /* Transiciones CSS con Vue */
+        .fade-enter {
+            opacity: 0;
+        }
+
+        .fade-enter-active {
+            transition: opacity 2s;
+        }
+
+        .fade-leave-active {
+            transition: opacity 2s;
+        }
+
+        .fade-leave-to {
+            opacity: 0;
+        }
+
+        .slide-enter{
+            transform: translateX(-550px);
+        }
+        .slide-enter-active, .slide-leave-active{
+            transition: transform 0.5s;
+        }
+        .slide-leave-to{
+            transform: translateX(700px);
+        }
+        /* Animaciones CSS con Vue */
+        .animacionCss-enter-active{
+            animation: nombreKeyFrame 1s;
+        }
+        .animacionCss-leave-active{
+            animation: nombreKeyFrame 1s reverse;
+        }
+
+        @keyframes nombreKeyFrame{
+            0%{
+                transform: scale(0);
+                text-align: center;
+            }
+            50%{
+                transform: scale(2);
+                text-align: center;
+            }
+            100%{
+                transform: scale(1);
+                text-align: center;
+            }
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+
+    <main>
+        <transition appear name="animacionCss">
+            <h1>TITULO ANIMADO</h1>
+        </transition>
+        <!-- Transicion FADE -->
+        <button @click="switchMethod('transicionFade')">Transicion FADE</button>
+
+        <transition name="fade">
+            <h1 v-if="variables.mostrarTransicion" v-text="mensajes.transicion"></h1>
+        </transition>
+
+        <!-- Transicion SLIDE -->
+        <button @click="switchMethod('transicionSlide')">transicion SLIDE</button>
+
+        <transition name="slide">
+            <h1 v-if="variables.mostrarTransicionSlide" v-text="mensajes.transicion"></h1>
+        </transition>    
+        <!-- Animaciones CSS -->
+
+        
+        <button @click="switchMethod('animacion')">Animación</button>
+        <transition name="animacionCss">
+            <h1 v-if="variables.animacion" v-text="mensajes.animacion" style="text-align: center;"></h1>
+        </transition>
+
+        <!-- Animaciones entre elementos -->
+
+        <button @click="switchMethod('entreElementos')">Varios Elementos</button>
+
+        <transition name=fade mode="out-in">
+            <h1 v-if="variables.elemBand" key="aparecer">Elemento1</h1>
+            <h1 v-if="!variables.elemBand" key="ocultar">Elemento2</h2>
+        </transition>
+
+
+        
+        <pre>{{$data}}</pre>
+
+    </main>
+
+    <script src="https://unpkg.com/vue@2.5.17/dist/vue.js"></script>
+
+    <script>
+        var v = new Vue({
+            el: 'main',
+            data: {
+
+                variables: {
+                    mostrarTransicion: false,
+                    mostrarTransicionSlide:false,
+                    animacion: false,
+                    elemBand:false,
+                },
+
+                mensajes: {
+                    transicion: 'Holis :3',
+                    animacion: 'animacion CSS',
+                    animationCustom: 'Animaciones custom CSS con Vue.js',
+                    entreElementos: 'Transiciones entre elementos con Vue.js',
+                },
+
+            },
+            methods: {
+                switchMethod(efecto) {
+                    console.log(efecto);
+                    if (efecto=='transicionFade') {
+                        this.variables.mostrarTransicion = !this.variables.mostrarTransicion;
+                    } else if (efecto=='transicionSlide'){
+                        this.variables.mostrarTransicionSlide=!this.variables.mostrarTransicionSlide
+                    } else if(efecto=='animacion'){
+                        this.variables.animacion=!this.variables.animacion
+                    } else {
+                        this.variables.elemBand=!this.variables.elemBand;
+                    }
+
+                }
+
+            },
+        });
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Prop. Computadas</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    
+</head>
+<body>
+    <main>
+        <div v-if="ejemplo_1">
+            <h2>Mensaje de data: {{mensaje}}</h2>
+            <!-- <h2>{{mensaje.toUpperCase()}}</h2> -->
+            <h2>Mensaje de Computed: {{mensajeComputed}}</h2>
+        </div>
+
+        <div v-if="ejemplo_2">
+            <ul>
+                <li v-for="tarea in tareasConPrioridad">{{tarea.titulo}} <small>({{tarea.prioridad}})</small></li>
+            </ul>
+        </div>
+
+        <pre>{{$data}}</pre>
+
+    
+    </main>
+    <script src="https://unpkg.com/vue@2.5.17/dist/vue.js"></script>
+    <script>
+        const v = new Vue({
+            el:'main',
+            data:{
+                ejemplo_1:false,
+                mensaje:'Hola mundo!',
+                ejemplo_2:true,
+                tareas:[
+                    {
+                        titulo: 'Aprender VUE.js',
+                        prioridad: true,
+                        antiguedad: 23 
+                    },
+                    {
+                        titulo: 'Aprender ES6',
+                        prioridad: false,
+                        antiguedad: 135
+                    },
+                    {
+                        titulo: 'Hacer ejercicio',
+                        prioridad: true,
+                        antiguedad: 378,
+                    },
+                ],
+            },
+            methods:{},
+            computed:{
+                mensajeComputed(){
+                    return this.mensaje.toUpperCase();
+                },
+                tareasConPrioridad(){
+                    return this.tareas.filter(
+                        function(parametro){
+                            return parametro.prioridad == true;
+                        }
+                    );
+                },
+                tareasOrdenadas(){
+                    
+                }
+            }
+        });
+    </script>
+</body>
+</html>

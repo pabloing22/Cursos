@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="main.js"></script>
+</head>
+<body>
+    <main>
+        <!-- <ul>
+            <li v-for="tarea in tareasAjax">{{tarea.title}}</li>
+        </ul> -->
+        <h1>Tareas Locales</h1>
+        <mis-tareas :tareas="tareasLocales"></mis-tareas>
+        <hr>
+        <h1>Tareas Independientes</h1>
+        <mis-tareas2></mis-tareas2>
+        <hr>
+        <h1>Tareas Ajax</h1>
+        <mis-tareas :tareas="tareasAjax"></mis-tareas>
+
+    </main>
+    <script src="https://unpkg.com/vue@2.5.17/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+        Vue.component('mis-tareas',{
+            props:['tareas'],
+            template:`<ul><li v-for="tarea in tareas">{{tarea.title}}</li></ul>`,
+        });
+
+        Vue.component('mis-tareas2',{
+            template:`<ul><li v-for="tarea in tareas">{{tarea.title}}</li></ul>`,
+            data(){
+                return{
+                    tareas:[
+                        {title: 'Aprender Vue2'},
+                        {title: 'Aprender PHP2'},
+                        {title: 'Aprender Wordpress2'},
+                    ],
+                }
+            }
+        });
+
+        new Vue({
+            el:'main',
+            mounted(){
+                axios.get('https://jsonplaceholder.typicode.com/todos')
+                    .then(
+                        (respuesta)=>{
+                            this.tareasAjax=respuesta.data;
+                        }
+                    );
+            },
+            data:{
+                tareasAjax:[],
+                tareasLocales:[
+                    {title: 'Aprender Vue'},
+                    {title: 'Aprender PHP'},
+                    {title: 'Aprender Wordpress'},
+                ],
+            },
+            methods:{},
+        });
+        
+    </script>    
+</body>
+</html>

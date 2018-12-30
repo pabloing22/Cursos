@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+</head>
+<body>
+    <main>
+        <ul v-if="vfor">
+            <!-- renderizado de listas desde un arreglo -->
+            <li v-for="x in arreglo">{{ x }}</li>
+        </ul>
+
+        <ul v-if="vfor2">
+           <li v-for="(y, index) in matriz">{{index}} - {{y.nombre}} <small>(Tipo de dato: {{y.tipo}})</small></li> 
+        </ul>
+
+        <ul>
+            <li v-for="(value, key, index) in persona">
+                {{index}}) {{key}}:{{value}}
+            </li>
+        </ul>
+
+        <pre>{{$data}}</pre>
+    </main>
+    <script src="https://unpkg.com/vue@2.5.17/dist/vue.js"></script>
+    <script>
+
+        const v = new Vue({
+            el:'main',
+            data:{
+                vfor:false,
+                arreglo:['Elemento 1','elemento 2','...','elemento n'],
+                //v.arreglo.push('agrego nuevo elemento a la lista');
+                vfor2:false,
+                matriz:[
+                    {nombre:'objeto1', tipo:'string'},
+                    {nombre:'objeto2',tipo:'Integer'},
+                    {nombre:'objeto3',tipo:'culaquiera'}
+                ],
+                persona:{
+                    nombre:'Pablo',
+                    edad:25,
+                    sexo:'M'
+                }
+
+                
+            }
+        });
+        
+    </script>
+</body>
+</html>
