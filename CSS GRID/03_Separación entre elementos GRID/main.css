@@ -1,0 +1,27 @@
+main{
+    height: 100vh;
+    display: grid;
+    /* grid-gap:10px; */
+    /* tambien se puede usar grid-gap: 10px 30px: filas y columnas */
+    /* o además grid-row-gap:10px; y grid-row-gap:30px; */
+    grid-row-gap:30px;
+    grid-column-gap:10px;
+    /* grid-template-columns: auto auto auto; separa en 33%  */
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+
+    /* implicit grid */
+    grid-auto-rows: 1fr;
+}
+
+div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: goldenrod;
+    color:white;
+}
+
+/* Explícit grid son aquellos grids items que se diseñan y definen
+sin embargo si hay un grid item que no se definió pero no se diseñó
+como es en el caso del div 10, entonces éste será un grid implícito. */
