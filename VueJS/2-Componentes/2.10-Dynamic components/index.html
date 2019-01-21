@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Dynamic Components</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="main.js"></script>
+</head>
+<body>
+    <main>
+        <button @click="activo='componente-1'">1</button>
+        <button @click="activo='componente-2'">2</button>
+        <button @click="activo='componente-3'">3</button>
+        <!-- 
+        <componente-1></componente-1>
+        <componente-2></componente-2>
+        <componente-3></componente-3> 
+        -->
+        <component :is="activo"></component>
+    </main>
+    <script src="https://unpkg.com/vue@2.5.17/dist/vue.js"></script>
+    
+    <script>
+        Vue.component('componente-1',{
+            props:[],
+            template:`<h1>Componente N°1</h1> <hr>`
+        });
+        Vue.component('componente-2',{
+            props:[],
+            template:`<h1>Componente N°2</h1>`
+        });
+        Vue.component('componente-3',{
+            props:[],
+            template:`<h1>Componente N°3</h1>`
+        });
+        var v = new Vue({
+            el:'main',
+            data:{
+                activo:null,
+            },
+            methods:{}
+        });
+    </script>
+</body>
+</html>

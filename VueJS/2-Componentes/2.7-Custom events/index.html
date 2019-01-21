@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Custom events</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="main.js"></script>
+</head>
+<body>
+    <!-- SIRVEN PARA PASAR INFORMACIÓN DESDE COMPONENTES HIJOS A PADRES -->
+    <main>
+        <alerta @mi-evento="mostrarExito = false" tipo="alerta--exito" posicion="alerta--arriba-izquierda" v-if="mostrarExito">
+            <template slot="header">Éxito</template>
+            <template> Mensaje con etiqueta template </template>
+            <template slot="footer">Footer Éxito</template>
+        </alerta>
+        
+        <alerta tipo="alerta--error" posicion="alerta--abajo-izquierda" v-if="mostrarError">
+            <template slot="header">Error</template>
+            <template> Mensaje con etiqueta template </template>
+            <template slot="footer">Footer Error</template>
+        </alerta>
+        
+        <div class=centro>
+            <button @click="mostrarExito=true">Mostrar Exito</button>
+            <button @click="mostrarError=true">Mostrar Error</button>
+            <pre>{{$data}}</pre>
+        </div>
+    </main>
+    <template id="alertaTemplate">
+        <section class="alerta" :class="[tipo, posicion]">
+            <header class="alerta__header">
+                <slot name="header">
+                    Éste es el HEADER default
+                </slot>
+                <a @click="ocultarWidget">cerrar</a>
+            </header>
+            <div class="alerta__contenido">
+                <slot>
+                    Acá tenemos el cuerpo del mensaje default
+                </slot>
+            </div>
+            <footer class="alerta__footer">
+                <slot name="footer">
+                    Éste es el FOOTER default
+                </slot>
+            </footer>
+        </section>
+    </template>
+    <script src="https://unpkg.com/vue@2.5.17/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+        Vue.component('alerta',{
+            props: ['tipo', 'posicion'],
+            template: `#alertaTemplate`,
+            methods:{
+                ocultarWidget(){
+                    // console.log('ocultar');
+                    // Este componente tiene que lanzar un evento y la instancia
+                    // de VUE debe escucharla en consecuencia y reaccionar.
+                    // Este evento se lanza con $emit(nombre del evento) donde
+                    // el nombre del evento lo definimos nosotros. Y ese mismo nombre
+                    // lo utilizamos en @nombreEvento de la etiqueta del componente de la 
+                    // instancia.
+                    this.$emit('mi-evento');
+                }
+            }
+        });
+        var v = new Vue({
+            el: 'main',
+            data:{
+                mostrarExito:false,
+                mostrarError:false,
+            },
+            methods:{},
+        })
+    </script>
+</body>
+</html>

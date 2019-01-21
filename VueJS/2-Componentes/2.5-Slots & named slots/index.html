@@ -10,11 +10,55 @@
 </head>
 <body>
     <main>
+        <alerta tipo="alerta--exito" posicion="alerta--arriba-izquierda">
+            <template slot="header">Éxito</template>
+            <template> Mensaje con etiqueta template </template>
+            <template slot="footer">Footer :)</template>
+            <!-- Renderiza la etiqueta que está por defecto en el componente -->
+        </alerta>
+        <alerta tipo="alerta--advertencia" posicion="alerta--abajo-izquierda">
+            <h1 slot="header">Advertencia H1</h1>
+            <p>Mensaje desde el componente hacia el slot con etiqueta P</p>
+            <!-- si utilizo una etiqueta determinada, esa misma etiqueta se renderiza
+            en el componente -->
+            <p slot="footer"> footer p </p>
+        </alerta>
         
     </main>
+
+    <template id="alertaTemplate">
+        <section class="alerta" :class="[tipo, posicion]">
+            <header class="alerta__header">
+                <slot name="header">
+                    Éste es el HEADER default
+                </slot>
+            </header>
+            <div class="alerta__contenido">
+                <slot>
+                    Acá tenemos el cuerpo del mensaje default
+                </slot>
+            </div>
+            <footer class="alerta__footer">
+                <slot name="footer">
+                    Éste es el FOOTER default
+                </slot>
+            </footer>
+        </section>
+    </template>
+
     <script src="https://unpkg.com/vue@2.5.17/dist/vue.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script>
+        Vue.component('alerta',{
+            props: ['tipo', 'posicion'],
+            template: `#alertaTemplate`
+        });
+
+        var v = new Vue({
+            el:'main',
+            data:{},
+            methods:{}
+        });
     
     </script>
 </body>

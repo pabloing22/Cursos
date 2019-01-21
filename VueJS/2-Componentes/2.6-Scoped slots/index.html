@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Scoped slots</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="main.js"></script>
+</head>
+<body>
+    <main>
+        <!-- ETIQUETAS LI -->
+        <mis-tareas :listado="tareas">
+            <template slot="header"> Etiquetas LI</template>
+            <template slot="tareas" scope="datos">  
+                <li>{{datos.title}}</li>
+            </template>
+        </mis-tareas>
+        <!-- ETIQUETAS P -->
+        <mis-tareas :listado="tareas">
+            <template slot="header"> Etiquetas P</template>
+            <template slot="tareas" scope="datosP">
+                <p>{{datosP.title}}</p>
+            </template>
+        </mis-tareas>
+        <!-- ETIQUETAS EMOJI -->
+        <mis-tareas :listado="tareas">
+            <template slot="header"> Emojis 😀</template>
+            <template slot="tareas" scope="datosE">
+                <p>😀{{datosE.title}}</p>
+            </template>
+        </mis-tareas>
+    </main>
+    <template id="tareasTemplate">
+        <ul>
+            <slot name="header">default</slot>
+            <slot name="tareas" v-for="tarea in listado" :title="tarea.titulo"></slot>
+            <!-- <li v-for="tarea in listado">
+                {{tarea.titulo}}
+            </li> -->
+            <hr>   
+        </ul>
+    </template>
+    <script src="https://unpkg.com/vue@2.5.17/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+        Vue.component('mis-tareas',{
+            props:['listado'], 
+            template: `#tareasTemplate`
+        })
+        var v = new Vue({
+            el:'main',
+            data:{
+                tareas:[
+                    {titulo:'Curso de Vue'},
+                    {titulo:'Salir a correr'},
+                    {titulo:'Organizar todo para estudiar'},
+                    {titulo:'Estudiar Análisis matemático 1'}
+                ],
+            }
+        });
+    </script>
+</body>
+</html>

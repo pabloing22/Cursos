@@ -1,0 +1,78 @@
+/* ESTILOS GENERALES */
+.centro{
+    margin-top:40%;
+    /* background-color: red; */
+}
+
+/* BLOQUES */
+.alerta{
+    width: 300px;
+    background-color: lightgray;
+    font-family: sans-serif;
+    position: absolute;
+    border-radius: 15px;
+    border: 1px solid white;
+    box-shadow: 1px 1px 2px gray;
+}
+
+/* ELEMENTOS */
+.alerta__header{
+    border-bottom: 1px solid white;
+    padding: 10px;
+    text-align: center;
+    font-weight: bold;
+}
+.alerta__header a{
+    position: relative;
+    left: 90px;
+    font-size: 10px;
+    color:blue;
+    cursor: pointer;
+}
+
+.alerta__contenido{
+    font-size: 14px;
+    padding: 20px;
+}
+
+.alerta__footer{
+    border-top: 1px solid white;
+    text-align: center;
+    padding: 10px;
+    font-size: 12px;
+}
+
+/* ESTILOS MODIFICADORES COLORES */
+
+.alerta--error{
+    background-color: indianred;
+}
+
+.alerta--advertencia{
+    background-color: lightgoldenrodyellow;
+}
+
+.alerta--exito{
+    background-color: lightgreen;
+}
+
+/* ESTILOS MODIFICADORES POSICIONES */
+.alerta--arriba-izquierda{
+    top:0;
+    left:0;
+}
+
+.alerta--arriba-derecha{
+    top:0;
+    right: 0;
+}
+
+.alerta--abajo-izquierda{
+    bottom: 0;
+    left:0;
+}
+
+.alerta--abajo-derecha{
+    bottom: 0;
+    right: 0;
+}
