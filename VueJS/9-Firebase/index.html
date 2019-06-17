@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Firebase & Vue</title>
+</head>
+<body>
+    <main>
+        <label for="">Agregar Tarea:</label><input type="text" v-model="tarea">
+        <button @click="firebasePush()">Agregar</button>
+        <h2>Tareas de la base de datos:</h2>
+        <p v-for="tarea in tareas">
+            {{tarea.name}} <small><i>{{tarea.key}}</i></small>
+        </p>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/6.1.0/firebase-app.js"></script>
+    <!-- <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-auth.js"></script> -->
+    <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-database.js"></script>
+
+
+    <!-- // db.ref('/set').set({
+    //     nombre: 'set',
+    //     objetivo: 'crear o reemplazar datos y si no existe la ruta la crea',
+    // })
+
+    // db.ref('push').push({
+    //     nombre: 'segundo push',
+    //     objetivo: 'IDEM'
+    // }).then(()=>{
+    //     console.log('esto es una promesa después del push')
+    // }) -->
+    <script>
+        var firebaseConfig = {
+            apiKey: "AIzaSyDDcQu7mYj6EhGnqevJQd0XNoAgY0tQlTc",
+            authDomain: "miproyecto-c6fd7.firebaseapp.com",
+            databaseURL: "https://miproyecto-c6fd7.firebaseio.com",
+            projectId: "miproyecto-c6fd7",
+            storageBucket: "miproyecto-c6fd7.appspot.com",
+            messagingSenderId: "37603498382",
+            appId: "1:37603498382:web:037dd89d66b94e92"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.database();
+
+        var vue = new Vue({
+            el: 'main',
+            created() {
+                // Me retorna todas las tareas y se ejecuta cada vez que se actualice la base de datos en la ruta /tareas
+                db.ref('/tareas').on('value', snapshot => this.cargarTareas(snapshot.val()))
+            },
+            firebase:{
+                lala: db.ref('/tareas'),
+            },
+            data:{
+                tarea:null,
+                tareas:[],
+            },
+            methods:{
+                firebasePush() {
+                    db.ref('/tareas').push({
+                        tarea: this.tarea
+                    }).then((data)=>{
+                        this.tarea=null;
+                        console.log(data.key);
+                    })
+                },
+                cargarTareas(tareas) {
+                    this.tareas=[];
+                    for (let i in tareas) {
+                        this.tareas.push({
+                            key: i,
+                            name: tareas[i].tarea,
+                        });
+                    }
+                    this.tareas.reverse();
+                }
+            },
+            computed:{
+                ejemplo() {
+                    return db.ref('/tareas')
+                }
+            }
+        });
+    </script>
+</body>
+</html>

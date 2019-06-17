@@ -29,11 +29,19 @@
             },
             methods:{
                 getPeople(){
-                    axios.get('https://randomuser.me/api/?results=25')
+                    axios.get('https://admin.karamsa.com.ar/wp-json/wp/v2/posts?categories=5&per_page=100')
                         .then((respuesta)=> {
                             // handle success
                             console.log(respuesta);
-                            this.people=respuesta.data.results;
+                            // this.people=respuesta.data.results;
+                            console.log(respuesta.data)
+                        });
+                    axios.get('http://tomascaprettini.com.ar/admin/wp-json/wp/v2/boda')
+                        .then((respuesta)=> {
+                            // handle success
+                            console.log(respuesta);
+                            // this.people=respuesta.data.results;
+                            console.log(respuesta.data)
                         });
 
                 },
